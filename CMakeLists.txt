@@ -1,10 +1,11 @@
-cmake_minimum_required( VERSION 3.1 )
+cmake_minimum_required( VERSION 3.5 )
+set (CMAKE_CXX_STANDARD 20)
 
-project( GLFW-CMake-starter )
+project( GLFW-Cmake-ImGUI-Starter )
 
 find_package( OpenGL REQUIRED )
 
-include_directories( ${OPENGL_INCLUDE_DIRS} )
+include_directories( ${OPENGL_INCLUDE_DIRS} imgui )
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
 set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
@@ -27,12 +28,26 @@ set( GLFW-CMAKE-STARTER-SRC
         main.cpp
         )
 
-add_executable( GLFW-CMake-starter WIN32 ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL} )
-target_link_libraries( GLFW-CMake-starter ${OPENGL_LIBRARIES} glfw )
+set( IMGUI_SOURCES
+        imgui/imgui.cpp
+        imgui/imgui_demo.cpp
+        imgui/imgui_draw.cpp
+        imgui/imgui_widgets.cpp
+        imgui/imgui_tables.cpp
+        imgui/backends/imgui_impl_glfw.cpp
+        imgui/backends/imgui_impl_glfw.h
+        imgui/backends/imgui_impl_opengl3.cpp
+        imgui/backends/imgui_impl_opengl3.h
+        )
+
+add_executable( GLFW-Cmake-ImGUI-Starter WIN32 ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL} ${IMGUI_SOURCES} )
+target_include_directories(GLFW-Cmake-ImGUI-Starter PRIVATE imgui imgui/backends)  # Include the IMGUI headers
+target_link_libraries( GLFW-Cmake-ImGUI-Starter ${OPENGL_LIBRARIES} glfw )
+
 if( MSVC )
     if(${CMAKE_VERSION} VERSION_LESS "3.6.0")
-        message( "\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set 'GLFW-CMake-starter' as StartUp Project in Visual Studio.\n" )
+        message( "\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set 'GLFW-Cmake-ImGUI-Starter' as StartUp Project in Visual Studio.\n" )
     else()
-        set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT GLFW-CMake-starter )
+        set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT GLFW-Cmake-ImGUI-Starter )
     endif()
 endif()
