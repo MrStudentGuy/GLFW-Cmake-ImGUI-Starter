@@ -3,6 +3,9 @@ set (CMAKE_CXX_STANDARD 20)
 
 project( GLFW-Cmake-ImGUI-Starter )
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/lib)
+
 find_package( OpenGL REQUIRED )
 
 include_directories( ${OPENGL_INCLUDE_DIRS} imgui )
@@ -24,9 +27,17 @@ if( MSVC )
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
 endif()
 
-set( GLFW-CMAKE-STARTER-SRC
+set( SRC
         main.cpp
-        )
+        UIManager.cpp
+        UIManager.h
+        UIWindow.h
+)
+
+set ( APP
+        app/HelloWorld.cpp
+        app/HelloWorld.h
+)
 
 set( IMGUI_SOURCES
         imgui/imgui.cpp
@@ -38,9 +49,9 @@ set( IMGUI_SOURCES
         imgui/backends/imgui_impl_glfw.h
         imgui/backends/imgui_impl_opengl3.cpp
         imgui/backends/imgui_impl_opengl3.h
-        )
+)
 
-add_executable( GLFW-Cmake-ImGUI-Starter WIN32 ${GLFW-CMAKE-STARTER-SRC} ${GLAD_GL} ${IMGUI_SOURCES} )
+add_executable( GLFW-Cmake-ImGUI-Starter WIN32 ${SRC} ${APP} ${GLAD_GL} ${IMGUI_SOURCES} )
 target_include_directories(GLFW-Cmake-ImGUI-Starter PRIVATE imgui imgui/backends)  # Include the IMGUI headers
 target_link_libraries( GLFW-Cmake-ImGUI-Starter ${OPENGL_LIBRARIES} glfw )
 
