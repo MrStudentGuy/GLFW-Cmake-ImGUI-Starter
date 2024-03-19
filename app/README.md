@@ -1,6 +1,12 @@
-
 # How to Register and Create a New Window in Your Application
 This guide will walk you through the process of registering and creating a new window in your application. We will be using the ImGui library for creating the window and the GLFW library for creating the OpenGL context.
+
+
+## Note
+There are two ways to do create and register a new window. 
+
+1. You can use the Python script "AddWindow.py". Just run the script and follow the instructions. 
+2. You can follow the steps below to create and register a new window manually.
 
 
 ## Step 1: Create a New Window Class
@@ -61,4 +67,4 @@ Finally, you need to create an instance of your new window class. This can be do
 
 
 ### Attention!
-Remember to replace MyWindow with the actual name of your new window class. This will create an instance of your new window when your application starts, and it will be registered with the UIManager due to the constructor of your new window class. Now, when UIManager::RenderUIWindows() is called in your main loop, it should render your new window.  That's it! You have successfully registered and created a new window in your application. You can add more windows by creating new classes that inherit from UIWindow, registering them with the UIManager in their constructors, and creating instances of them in the main.cpp file.
+Remember to replace MyWindow with the actual name of your new window class. This will create an instance of your new window when your application starts, and it will be registered with the UIManager due to the constructor of your new window class. Now, when UIManager::RenderUIWindows() is called in the main loop, it should render your new window.  That's it! You have successfully registered and created a new window in your application. You can add more windows by creating new classes that inherit from UIWindow, registering them with the UIManager in their constructors, and creating instances of them in the main.cpp file.

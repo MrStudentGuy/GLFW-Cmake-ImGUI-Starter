@@ -6,11 +6,14 @@
 
 #include "UIManager.h"
 #include "app/HelloWorld.h"
+#include "app/MyGraph.h"
+#include "app/MySecondWindow.h"
 
 
 int main(void)
 {
-
+    MyGraph mygraphInstance;
+    MySecondWindow mysecondwindowInstance;
     HelloWorldWindow helloWorldWindow;
 
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
@@ -62,7 +65,7 @@ int main(void)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.Fonts -> AddFontFromFileTTF("res/jbmono.ttf", 18);
+    io.Fonts -> AddFontFromFileTTF("jbmono.ttf", 18);
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch

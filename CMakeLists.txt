@@ -34,10 +34,8 @@ set( SRC
         UIWindow.h
 )
 
-set ( APP
-        app/HelloWorld.cpp
-        app/HelloWorld.h
-)
+set( APP app/HelloWorld.cpp
+        app/HelloWorld.h )
 
 set( IMGUI_SOURCES
         imgui/imgui.cpp
